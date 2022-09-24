@@ -1,47 +1,62 @@
-# SPDX-License-Identifier: GPL-3.0-only
 #
-# Copyright (C) 2020 Lean <coolsnowwolf@gmail.com>
-# Copyright (C) 2021 ImmortalWrt.org
+# Copyright (C) 2010-2022 OpenWrt.org
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=autocore
-PKG_RELEASE:=axt1800
+PKG_VERSION:=1
+PKG_RELEASE:=43
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/target.mk
 
 define Package/autocore-arm
-  TITLE:=ARM auto core script.
+  TITLE:=Arm auto core loadbalance script.
   MAINTAINER:=CN_SZTL
+  DEPENDS:=@(TARGET_bcm27xx||TARGET_bcm53xx||TARGET_ipq40xx||TARGET_ipq806x||TARGET_ipq60xx||TARGET_ipq807x||TARGET_mvebu||TARGET_rockchip) \
+    +TARGET_bcm27xx:bcm27xx-userland +TARGET_bcm53xx:nvram +ethtool
   VARIANT:=arm
+endef
+
+define Package/autocore-x86
+  TITLE:=x86/x64 auto core loadbalance script.
+  MAINTAINER:=Lean
+  DEPENDS:=@TARGET_x86 +bc +lm-sensors +ethtool
+  VARIANT:=x86
+endef
+
+define Package/autocore-arm/description
+  A luci autoconfig hotplug script.
+endef
+
+define Package/autocore-x86/description
+  A usb autoconfig hotplug script.
 endef
 
 define Build/Compile
 endef
 
-define Package/autocore/install/Default
+define Package/autocore-arm/install
 	$(INSTALL_DIR) $(1)/etc
-	$(CP) ./files/generic/10_system.js $(1)/etc/rpcd_10_system.js
-	$(CP) ./files/generic/luci $(1)/etc/rpcd_luci
-
+	$(INSTALL_DATA) ./files/arm/index.htm $(1)/etc/index.htm
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/generic/090-cover-index_files $(1)/etc/uci-defaults/
-
+	$(INSTALL_BIN) ./files/arm/090-cover-index_htm $(1)/etc/uci-defaults/090-cover-index_htm
 	$(INSTALL_DIR) $(1)/sbin
-	$(INSTALL_BIN) ./files/generic/cpuinfo $(1)/sbin/
-	$(INSTALL_BIN) ./files/generic/ethinfo $(1)/sbin/
-	$(INSTALL_BIN) ./files/arm/tempinfo $(1)/sbin/
-
-	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
-	$(CP) ./files/generic/luci-mod-status-autocore.json $(1)/usr/share/rpcd/acl.d/
-
-	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
-	$(INSTALL_DATA) ./files/generic/21_ethinfo.js $(1)/www/luci-static/resources/view/status/include/
+	$(INSTALL_BIN) ./files/arm/sbin/cpuinfo $(1)/sbin/cpuinfo
+	$(INSTALL_BIN) ./files/arm/sbin/ethinfo $(1)/sbin/ethinfo
 endef
 
-define Package/autocore-arm/install
-	$(call Package/autocore/install/Default,$(1))
+define Package/autocore-x86/install
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/x86/autocore $(1)/etc/init.d/autocore
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_DATA) ./files/x86/index.htm $(1)/etc/index.htm
+	$(INSTALL_DIR) $(1)/sbin
+	$(CP) ./files/x86/sbin/* $(1)/sbin
 endef
 
 $(eval $(call BuildPackage,autocore-arm))
+$(eval $(call BuildPackage,autocore-x86))

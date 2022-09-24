@@ -1,5 +1,13 @@
 # 欢迎来到 适用于 IPQ60xx 的 Openwrt 源码仓库
-基于 [lean 的 IPQ60xx 仓库](https://github.com/coolsnowwolf/openwrt-gl-ax1800)
+基于[ lean 的 IPQ60xx 仓库](https://github.com/coolsnowwolf/openwrt-gl-ax1800)，[zheshifandian 的 gl-axt1800 仓库](https://github.com/zheshifandian/openwrt-ax1800)。    
+我只是略作修改，感谢以上两位以及其他贡献者。  
+编译好的适用于和目ax18固件[下载地址](https://github.com/sdf8057/Actions-OpenWrt/actions)，[telegram发布频道](https://t.me/ax18rom_share)。  
+
+Tips:
+1. 推荐使用main分支，其他分支不保证正常使用。  
+2. 无线wifi被我默认移除了，如有需要请自行恢复。  
+3. 推荐复制使用[云编译项目](https://github.com/sdf8057/Actions-OpenWrt)的config文件，在此基础上增加插件。  
+4. 有些插件会导致硬件转发加速失效，包括但是不限于openclash，多拨。  
 
 ## 注意
 
@@ -27,8 +35,8 @@
 3. 下载源代码，更新 feeds 并选择配置
 
    ```bash
-   git clone -b stable --single-branch https://github.com/zheshifandian/openwrt-ax1800
-   cd openwrt-ax1800
+   git clone -b main --single-branch https://github.com/sdf8057/ipq6000.git
+   cd ipq6000
    ./scripts/feeds update -a && ./scripts/feeds install -a
    make menuconfig
    ```
@@ -38,19 +46,17 @@
 
    ```bash
    make download -j8
-   make -j4 tools/compile
-   make -j4 toolchain/compile
-   make -j1 V=99
+   make -j1 V=s
    ```
 
 5. 二次编译：
 
    ```bash
-   cd openwrt-ax1800
-   git fetch -all && git reset --hard origin/stable
+   cd ipq6000
+   git fetch && git reset --hard origin/main
    ./scripts/feeds update -a && ./scripts/feeds install -a
    make defconfig
-   make -j1 V=99
+   make V=s -j$(nproc)
    ```
 
 6. 如果需要重新配置：
@@ -58,8 +64,7 @@
    ```bash
    rm -rf .config
    make menuconfig
-   make -j4 prepare
-   make -j1 V=99
+   make V=s -j$(nproc)
    ```
 
 7. 编译完成后输出路径：bin/targets
