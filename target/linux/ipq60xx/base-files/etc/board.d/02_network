@@ -13,7 +13,7 @@ ipq60xx_setup_interfaces()
 
 	case "$board" in
 	cmiot,ax18|\
-	qihoo,v6|\
+	qihoo,360v6|\
 	zn,m2)
 		ucidef_set_interfaces_lan_wan "eth1 eth2 eth3" "eth0"
 		;;
@@ -45,7 +45,7 @@ ipq60xx_setup_macs()
 		wan_mac=$(mtd_get_mac_ascii devinfo hw_mac_addr)
 		lan_mac=$(macaddr_add "$wan_mac" 1)
 		;;
-	qihoo,v6)
+	qihoo,360v6)
 		lan_mac=$(mtd_get_mac_ascii factory lanMac)
 		wan_mac=$(macaddr_add "$lan_mac" 1)
 		;;

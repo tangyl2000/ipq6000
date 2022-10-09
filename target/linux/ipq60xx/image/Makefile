@@ -104,17 +104,18 @@ define Device/linksys_mr7350
 endef
 TARGET_DEVICES += linksys_mr7350
 
-define Device/qihoo_v6
+define Device/qihoo_360v6
 	$(call Device/FitImage)
 	$(call Device/UbiFit)
 	BLOCKSIZE := 128k
 	PAGESIZE := 2048
-	DEVICE_DTS := qcom-ipq6018-qihoo-v6
+	DEVICE_DTS := qcom-ipq6018-qihoo-360v6
 	DEVICE_DTS_CONFIG := config@cp03-c1
-	DEVICE_TITLE := Qihoo V6
-	DEVICE_PACKAGES := kmod-usb3 kmod-usb-phy-msm
+	DEVICE_TITLE := Qihoo 360V6
+	DEVICE_PACKAGES := kmod-usb3 kmod-usb-phy-msm \
+	ath11k-wifi-qihoo_360v6
 endef
-TARGET_DEVICES += qihoo_v6
+TARGET_DEVICES += qihoo_360v6
 
 define Device/xiaomi_rm1800
 	$(call Device/FitImage)

@@ -26,7 +26,8 @@ endef
 
 ALLWIFIBOARDS:= \
 	gl-ax1800 \
-	gl-axt1800
+	gl-axt1800 \
+	qihoo_360v6
 
 ALLWIFIPACKAGES:=$(foreach BOARD,$(ALLWIFIBOARDS),ath11k-wifi-$(BOARD))
 
@@ -85,5 +86,7 @@ endef
 
 $(eval $(call generate-ath11k-wifi-package,gl-ax1800,Gl.iNET AX1800))
 $(eval $(call generate-ath11k-wifi-package,gl-axt1800,Gl.iNET AXT1800))
+$(eval $(call generate-ath11k-wifi-package,qihoo_360v6,QIHOO 360V6))
+
 
 $(foreach PACKAGE,$(ALLWIFIPACKAGES),$(eval $(call BuildPackage,$(PACKAGE))))
