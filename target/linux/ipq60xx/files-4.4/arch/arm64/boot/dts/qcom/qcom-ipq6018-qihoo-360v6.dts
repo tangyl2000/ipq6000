@@ -20,8 +20,8 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	model = "Qihoo V6";
-	compatible = "qihoo,v6", "qcom,ipq6018";
+	model = "Qihoo 360V6";
+	compatible = "qihoo,360v6", "qcom,ipq6018";
 	interrupt-parent = <&intc>;
 	qcom,msm-id = <0x192 0x0>;
 
