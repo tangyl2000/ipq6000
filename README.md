@@ -1,12 +1,11 @@
 # 欢迎来到 适用于 IPQ60xx 的 Openwrt 源码仓库
-基于[ lean 的 IPQ60xx 仓库](https://github.com/coolsnowwolf/openwrt-gl-ax1800)，[zheshifandian 的 gl-axt1800 仓库](https://github.com/zheshifandian/openwrt-ax1800)。    
-我只是略作修改，感谢以上两位以及其他贡献者。  
-编译好的适用于和目ax18固件[下载地址](https://github.com/sdf8057/Actions-OpenWrt/actions)，[telegram发布频道](https://t.me/ax18rom_share)。  
+基于[ lean 的 IPQ60xx 仓库](https://github.com/coolsnowwolf/openwrt-gl-ax1800)，[zheshifandian 的 gl-axt1800 仓库](https://github.com/zheshifandian/openwrt-ax1800) [sdf8057的IPQ6000仓库]（https://github.com/sdf8057/ipq6000.git）。    
+我只是略作修改，感谢以上贡献者。  
 
 Tips:
 1. 推荐使用main分支，其他分支不保证正常使用。  
 2. 无线wifi被我默认移除了，如有需要请自行恢复。  
-3. 推荐复制使用[云编译项目](https://github.com/sdf8057/Actions-OpenWrt)的config文件，在此基础上增加插件。  
+3. 默认超频至1.8G，6018的官方频率就是1.8G，并且经过多台设备测试测试，稳定没问题。
 4. 有些插件会导致硬件转发加速失效，包括但是不限于openclash，多拨。  
 
 ## 注意
@@ -35,7 +34,7 @@ Tips:
 3. 下载源代码，更新 feeds 并选择配置
 
    ```bash
-   git clone -b main --single-branch https://github.com/sdf8057/ipq6000.git
+   git clone -b main --single-branch https://github.com/hxlls/ipq6000.git
    cd ipq6000
    ./scripts/feeds update -a && ./scripts/feeds install -a
    make menuconfig
