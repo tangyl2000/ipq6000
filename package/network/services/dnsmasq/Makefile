@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dnsmasq
-PKG_UPSTREAM_VERSION:=2.86
+PKG_UPSTREAM_VERSION:=2.80
 PKG_VERSION:=$(subst test,~~test,$(subst rc,~rc,$(PKG_UPSTREAM_VERSION)))
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=16.4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_UPSTREAM_VERSION).tar.xz
-PKG_SOURCE_URL:=https://thekelleys.org.uk/dnsmasq
-PKG_HASH:=28d52cfc9e2004ac4f85274f52b32e1647b4dbc9761b82e7de1e41c49907eb08
+PKG_SOURCE_URL:=http://thekelleys.org.uk/dnsmasq
+PKG_HASH:=cdaba2785e92665cf090646cba6f94812760b9d7d8c8d0cfb07ac819377a63bb
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYING
@@ -24,7 +24,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_UPSTR
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
-PKG_ASLR_PIE_REGULAR:=1
 PKG_CONFIG_DEPENDS:= CONFIG_PACKAGE_dnsmasq_$(BUILD_VARIANT)_dhcp \
 	CONFIG_PACKAGE_dnsmasq_$(BUILD_VARIANT)_dhcpv6 \
 	CONFIG_PACKAGE_dnsmasq_$(BUILD_VARIANT)_dnssec \
@@ -89,7 +88,6 @@ endef
 define Package/dnsmasq/conffiles
 /etc/config/dhcp
 /etc/dnsmasq.conf
-/etc/dnsmasq.d/
 endef
 
 define Package/dnsmasq-full/config
@@ -100,22 +98,22 @@ define Package/dnsmasq-full/config
 	config PACKAGE_dnsmasq_full_dhcpv6
 		bool "Build with DHCPv6 support."
 		depends on IPV6 && PACKAGE_dnsmasq_full_dhcp
-		default n
+		default y
 	config PACKAGE_dnsmasq_full_dnssec
 		bool "Build with DNSSEC support."
-		default n
+		default y
 	config PACKAGE_dnsmasq_full_auth
 		bool "Build with the facility to act as an authoritative DNS server."
-		default n
+		default y
 	config PACKAGE_dnsmasq_full_ipset
 		bool "Build with IPset support."
 		default y
 	config PACKAGE_dnsmasq_full_conntrack
 		bool "Build with Conntrack support."
-		default n
+		default y
 	config PACKAGE_dnsmasq_full_noid
 		bool "Build with NO_ID. (hide *.bind pseudo domain)"
-		default n
+		default y
 	config PACKAGE_dnsmasq_full_broken_rtc
 		bool "Build with HAVE_BROKEN_RTC."
 		default n
@@ -128,10 +126,10 @@ endef
 Package/dnsmasq-dhcpv6/conffiles = $(Package/dnsmasq/conffiles)
 Package/dnsmasq-full/conffiles = $(Package/dnsmasq/conffiles)
 
-TARGET_CFLAGS += -flto
-TARGET_LDFLAGS += -flto=jobserver
+TARGET_CFLAGS += -ffunction-sections -fdata-sections
+TARGET_LDFLAGS += -Wl,--gc-sections
 
-COPTS = -DHAVE_UBUS -DHAVE_POLL_H \
+COPTS = -DHAVE_UBUS \
 	$(if $(CONFIG_IPV6),,-DNO_IPV6)
 
 ifeq ($(BUILD_VARIANT),nodhcpv6)
@@ -172,7 +170,7 @@ define Package/dnsmasq/install
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/neigh
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/ntp
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/tftp
-	$(INSTALL_DATA) ./files/dnsmasqsec.hotplug $(1)/etc/hotplug.d/ntp/25-dnsmasqsec
+	$(INSTALL_CONF) ./files/dnsmasqsec.hotplug $(1)/etc/hotplug.d/ntp/25-dnsmasqsec
 	$(INSTALL_DIR) $(1)/usr/share/dnsmasq
 	$(INSTALL_CONF) ./files/dhcpbogushostname.conf $(1)/usr/share/dnsmasq/
 	$(INSTALL_CONF) ./files/rfc6761.conf $(1)/usr/share/dnsmasq/
@@ -180,8 +178,6 @@ define Package/dnsmasq/install
 	$(INSTALL_BIN) ./files/dhcp-script.sh $(1)/usr/lib/dnsmasq/dhcp-script.sh
 	$(INSTALL_DIR) $(1)/usr/share/acl.d
 	$(INSTALL_DATA) ./files/dnsmasq_acl.json $(1)/usr/share/acl.d/
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/50-dnsmasq-migrate-resolv-conf-auto.sh $(1)/etc/uci-defaults
 endef
 
 Package/dnsmasq-dhcpv6/install = $(Package/dnsmasq/install)
