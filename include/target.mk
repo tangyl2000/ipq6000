@@ -58,14 +58,11 @@ DEFAULT_PACKAGES.tweak:=\
 	kmod-nf-nathelper \
 	kmod-nf-nathelper-extra \
 	luci \
-	luci-app-autoreboot \
 	luci-app-cpufreq \
 	luci-app-filetransfer \
 	luci-app-ramfree \
-	luci-app-openvpn-server \
 	luci-app-ssr-plus \
 	luci-app-turboacc \
-	luci-app-unblockmusic \
 	luci-app-upnp \
 	luci-lib-fs \
 	luci-lib-ipkg \
