@@ -4,10 +4,10 @@ PKG_NAME:=qca-ssdk
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_DATE:=2021-07-18
-PKG_SOURCE_URL:=https://source.codeaurora.org/quic/qsdk/oss/lklm/qca-ssdk
-PKG_SOURCE_VERSION:=c06242180efd94f5e01f1a22e5e74d45f56c9035
-PKG_MIRROR_HASH:=39d46819db1b6872b8984278f1286fc08c6acfe4f25e8db3162ea60b532a96e5
+PKG_SOURCE_DATE:=2022-02-09
+PKG_SOURCE_URL:=https://git.codelinaro.org/clo/qsdk/oss/lklm/qca-ssdk.git
+PKG_SOURCE_VERSION:=0d6d410637648b1bea0dede48d3fab791689cfce
+PKG_MIRROR_HASH:=54891fbd66f147ccc51d9815d91cf20720046b37c41c80311fa12cf66b31b8b0
 
 include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/package.mk
