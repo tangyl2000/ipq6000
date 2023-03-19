@@ -1273,6 +1273,7 @@ define KernelPackage/netlink-diag/description
  Netlink diag is a module made for use with iproute2's ss utility
 endef
 
+$(eval $(call KernelPackage,netlink-diag))
 
 define KernelPackage/inet-diag
   SUBMENU:=$(NETWORK_SUPPORT_MENU)
@@ -1287,9 +1288,17 @@ define KernelPackage/inet-diag
 	$(LINUX_DIR)/net/ipv4/inet_diag.ko \
 	$(LINUX_DIR)/net/ipv4/tcp_diag.ko \
 	$(LINUX_DIR)/net/ipv4/udp_diag.ko \
-	$(LINUX_DIR)/net/ipv4/raw_diag.ko@ge4.10
-  AUTOLOAD:=$(call AutoLoad,31,inet_diag tcp_diag udp_diag raw_diag@ge4.10)
+	$(LINUX_DIR)/net/ipv4/raw_diag.ko
+  AUTOLOAD:=$(call AutoLoad,31,inet_diag tcp_diag udp_diag raw_diag)
 endef
+
+define KernelPackage/inet-diag/description
+Support for INET (TCP, DCCP, etc) socket monitoring interface used by
+native Linux tools such as ss.
+endef
+
+$(eval $(call KernelPackage,inet-diag))
+
 
 define KernelPackage/inet-diag/description
   Support for INET (TCP, DCCP, etc) socket monitoring interface used by
