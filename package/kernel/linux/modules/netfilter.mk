@@ -686,6 +686,7 @@ endef
 
 $(eval $(call KernelPackage,ipt-led))
 
+
 define KernelPackage/ipt-socket
   TITLE:=Iptables socket matching support
   DEPENDS+=+kmod-nf-socket +kmod-nf-conntrack
@@ -700,6 +701,7 @@ define KernelPackage/ipt-socket/description
 endef
 
 $(eval $(call KernelPackage,ipt-socket))
+
 
 define KernelPackage/ipt-tproxy
   TITLE:=Transparent proxying support
@@ -720,6 +722,7 @@ define KernelPackage/ipt-tproxy/description
 endef
 
 $(eval $(call KernelPackage,ipt-tproxy))
+
 
 define KernelPackage/ipt-tee
   TITLE:=TEE support
