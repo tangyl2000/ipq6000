@@ -1,6 +1,9 @@
 # 欢迎来到 适用于 IPQ60xx 的 Openwrt 源码仓库
-基于以下三个源码库：https://github.com/zheshifandian/openwrt-ax1800 ，https://github.com/sdf8057/ipq6000.git ，https://github.com/hxlls/ipq6000.git
-我只是略作修改，感谢以上贡献者。  
+基于以下三个源码库：
+https://github.com/zheshifandian/openwrt-ax1800
+https://github.com/sdf8057/ipq6000.git
+https://github.com/hxlls/ipq6000.git
+我只是略作修改，感谢以上贡献者。
 
 仅作为编译zn-m2自用固件使用。
 
@@ -71,5 +74,3 @@ Tips:
 7. 编译完成后输出路径：bin/targets
 
 本套代码不保证所有IPK可以编译成功。
-
-你可以自由使用，但源码编译二次发布请注明 [lean 的  GitHub 仓库](https://github.com/coolsnowwolf/lede)
