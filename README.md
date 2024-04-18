@@ -36,7 +36,7 @@ Tips:
 3. 下载源代码，更新 feeds 并选择配置
 
    ```bash
-   git clone -b main --single-branch https://github.com/hxlls/ipq6000.git
+   git clone -b main --single-branch https://github.com/tangyl2000/ipq6000.git
    cd ipq6000
    ./scripts/feeds update -a && ./scripts/feeds install -a
    make menuconfig
