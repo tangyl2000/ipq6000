@@ -1,0 +1,3 @@
+[submodule "package/libs/ngtcp2"]
+	path = package/libs/ngtcp2
+	url = https://github.com/tangyl2000/ipq6000
