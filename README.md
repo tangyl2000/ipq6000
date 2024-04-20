@@ -1,12 +1,11 @@
 # 欢迎来到 适用于 IPQ60xx 的 Openwrt 源码仓库
-基于[ lean 的 IPQ60xx 仓库](https://github.com/coolsnowwolf/openwrt-gl-ax1800)，https://github.com/zheshifandian/openwrt-ax1800 ，https://github.com/sdf8057/ipq6000.git ，
-我只是略作修改，感谢以上贡献者。  
+基于以下三个源码库：
+https://github.com/zheshifandian/openwrt-ax1800
+https://github.com/sdf8057/ipq6000.git
+https://github.com/hxlls/ipq6000.git
+我只是略作修改，感谢以上贡献者。
 
-Tips:
-1. 推荐使用main分支，其他分支不保证正常使用。  
-2. 无线wifi被我默认移除了，如有需要请自行恢复。  
-3. 默认超频至1.8G，6018的官方频率就是1.8G，并且经过多台设备测试测试，稳定没问题。
-4. 有些插件会导致硬件转发加速失效，包括但是不限于openclash，多拨。  
+仅作为编译zn-m2自用固件使用。
 
 ## 注意
 
@@ -34,7 +33,7 @@ Tips:
 3. 下载源代码，更新 feeds 并选择配置
 
    ```bash
-   git clone -b main --single-branch https://github.com/hxlls/ipq6000.git
+   git clone -b main --single-branch https://github.com/tangyl2000/ipq6000.git
    cd ipq6000
    ./scripts/feeds update -a && ./scripts/feeds install -a
    make menuconfig
@@ -69,5 +68,3 @@ Tips:
 7. 编译完成后输出路径：bin/targets
 
 本套代码不保证所有IPK可以编译成功。
-
-你可以自由使用，但源码编译二次发布请注明 [lean 的  GitHub 仓库](https://github.com/coolsnowwolf/lede)
