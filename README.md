@@ -1,5 +1,5 @@
 # 欢迎来到 适用于 IPQ60xx 的 Openwrt 源码仓库
-基于以下三个源码库：
+基于以下三个源码库：  
 https://github.com/zheshifandian/openwrt-ax1800  
 https://github.com/sdf8057/ipq6000.git  
 https://github.com/hxlls/ipq6000.git  
