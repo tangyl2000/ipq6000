@@ -5,7 +5,7 @@ https://github.com/sdf8057/ipq6000.git
 https://github.com/hxlls/ipq6000.git  
 我只是略作修改，感谢以上贡献者。
 
-仅作为编译zn-m2自用固件使用。
+仅作为编译zn-m2自用固件使用。  
 插件清单：  
 luci-app-arpbind  
 luci-app-autoreboot  
