@@ -5,7 +5,8 @@ https://github.com/sdf8057/ipq6000.git
 https://github.com/hxlls/ipq6000.git  
 我只是略作修改，感谢以上贡献者。
 
-仅作为编译zn-m2自用固件使用。  
+仅作为编译zn-m2自用固件使用,.config文件即当前的编译配置文件。  
+可参考另一个库zn-m2中zn-m2-hxlls.sh文件中对部分插件的更新和修改。  
 插件清单：  
 luci-app-arpbind  
 luci-app-autoreboot  
