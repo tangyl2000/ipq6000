@@ -1,11 +1,30 @@
 # 欢迎来到 适用于 IPQ60xx 的 Openwrt 源码仓库
-基于以下三个源码库：
-https://github.com/zheshifandian/openwrt-ax1800
-https://github.com/sdf8057/ipq6000.git
-https://github.com/hxlls/ipq6000.git
+基于以下三个源码库：  
+https://github.com/zheshifandian/openwrt-ax1800  
+https://github.com/sdf8057/ipq6000.git  
+https://github.com/hxlls/ipq6000.git  
 我只是略作修改，感谢以上贡献者。
 
-仅作为编译zn-m2自用固件使用。
+仅作为编译zn-m2自用固件使用,.config文件即当前的编译配置文件。  
+可参考另一个库zn-m2中zn-m2-hxlls.sh文件中对部分插件的更新和修改。  
+插件清单：  
+luci-app-arpbind  
+luci-app-autoreboot  
+luci-app-cpufreq  
+luci-app-ddns-go  
+luci-app-dnsfilter  
+luci-app-eqos  
+luci-app-filetransfer  
+luci-app-firewall  
+luci-app-msd_lite  
+luci-app-passwall  
+luci-app-pushbot  
+luci-app-ramfree  
+luci-app-ttyd  
+luci-app-turboacc  
+luci-app-upnp  
+luci-app-vlmcsd  
+luci-app-zerotier  
 
 ## 注意
 
